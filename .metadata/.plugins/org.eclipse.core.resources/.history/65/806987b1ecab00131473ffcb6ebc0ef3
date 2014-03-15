@@ -1,0 +1,78 @@
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class callback
+ */
+@WebServlet("/callback")
+public class callback extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public callback() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String code = request.getParameter("code");
+		
+		URL tokenReq = new URL("https://api.twitch.tv/kraken/oauth2/token");
+		String params = "client_id=jnu1pncqiy1terszj189ejzjomd911r" +
+						"&client_secret=amgjqsl072wc33trwujysixxs3aqlua" +
+						"&grant_type=authorization_code" +
+						"&code=" + code;
+		
+		HttpURLConnection cnx = (HttpURLConnection) tokenReq.openConnection();
+		cnx.setDoOutput(true);
+		cnx.setRequestMethod("POST");
+		OutputStreamWriter os = new OutputStreamWriter(cnx.getOutputStream());
+		os.write(params);
+		os.flush();
+		os.close();
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(tokenReq.openStream()));
+		String reply = null;
+		
+		while ((reply = br.readLine()) != null)
+		{
+			response.getWriter().println(reply);
+		}
+		
+/*		cnx.addRequestProperty("Authentication", "OAuth " + clientID);
+		Map<String, List<String>> map = cnx.getRequestProperties();
+		
+		for(String key : map.keySet())
+		{
+			System.out.println("\n\n" + key);
+			for(String value : map.get(key))
+			{
+				System.out.println(value);
+			}
+		}*/
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+	}
+
+}
