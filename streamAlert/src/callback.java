@@ -23,7 +23,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @WebServlet("/callback")
 public class callback extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+  
+	/**
+	 * The authentication key from Twitch
+	 */
 	private String mAuthKey;
     /**
      * @see HttpServlet#HttpServlet()
@@ -37,18 +40,31 @@ public class callback extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String requestURI = request.getScheme() + "://" + request.getServerName() + ":" + 
+				request.getServerPort() + request.getRequestURI();
+		//System.out.println(requestURI);
+		int lastSlashIndex = requestURI.lastIndexOf("/");
+
+		String cbURL = requestURI.substring(0, lastSlashIndex) + "/callback";
+		
+		//this is the code autheticating our client
 		String code = request.getParameter("code");
-		response.getWriter().println("Your code is " + code + "<br />");
+//		response.getWriter().println("Your code is " + code + "<br />");
 		
 		if (code != "" && code != null)
 		{
 			try 
 			{
-				Map<String, Object> authkeyMap = getAuthMap(code);
+				//Gets the JSON object as a map which contains the authentication key
+				Map<String, Object> authkeyMap = getAuthMap(code, cbURL);
 				mAuthKey = authkeyMap.get("access_token").toString();
+				//Get the User JSON object
 				Map<String, Object> userMap = getUserMap();
 				
 				response.getWriter().println(userMap.get("display_name") + "<br />");
+				request.setAttribute("name", userMap.get("display_name"));
+				
+				request.getRequestDispatcher("/view.jsp").forward(request, response);
 			} 
 			catch (Exception e) 
 			{
@@ -64,23 +80,33 @@ public class callback extends HttpServlet {
 		// TODO Auto-generated method stub
 	}
 	
-	private Map<String, Object> getAuthMap(String pCode) throws Exception
-	{
+	/**
+	 * Gets the Authentication key and access right
+	 * @param pCode 
+	 * @return Code that was received earlier
+	 * @throws Exception Propagates throws
+	 */
+	private Map<String, Object> getAuthMap(String pCode, String cbURL) throws Exception
+	{		
+		//This is the URL to get the authentication key and Post params
 		URL tokenReq = new URL("https://api.twitch.tv/kraken/oauth2/token");
 		String params = "client_id=jnu1pncqiy1terszj189ejzjomd911r" +
 						"&client_secret=amgjqsl072wc33trwujysixxs3aqlua" +
 						"&grant_type=authorization_code" +
-						"&redirect_uri=http://localhost:8080/streamAlert/callback" +
+						"&redirect_uri=" + cbURL +
 						"&code=" + pCode;
 	
+		//Needs to be an HTTP URL to use the POST method 
 		HttpURLConnection cnx = (HttpURLConnection) tokenReq.openConnection();
 		cnx.setDoOutput(true);
+		//Header requirements
 		cnx.setRequestMethod("POST");
 		cnx.setRequestProperty("Content-Type", "application/x-www-form-urlencoded"); 
 		cnx.setRequestProperty("charset", "utf-8");
 		cnx.setRequestProperty("Content-Length", "" + Integer.toString(params.getBytes().length));
 		cnx.setUseCaches(false);
 	
+		//Write the params into the body per the POST method
 		DataOutputStream os = new DataOutputStream(cnx.getOutputStream());
 		os.writeBytes(params);
 		os.flush();
@@ -92,11 +118,18 @@ public class callback extends HttpServlet {
 		return JSONtoMap(reply);
 	}
 	
+	/**
+	 * Gets the user's info from Twitch using valid API
+	 * @return Map of the reply
+	 * @throws Exception Propagates throws
+	 */
 	private Map<String, Object> getUserMap() throws Exception
 	{		
+		//Get user data from Twitch
 		URL userReq = new URL("https://api.twitch.tv/kraken/user");
 		URLConnection cnx = userReq.openConnection();
 		
+		//Requested with Curl to recieve a JSON object with our auth key
 		cnx.setRequestProperty("X-Requested-With", "Curl");
 		cnx.setRequestProperty("Accept", "application/vnd.twitchtv.v2+json");
 		cnx.setRequestProperty("Authorization", "OAuth " + mAuthKey);
@@ -107,6 +140,12 @@ public class callback extends HttpServlet {
 		return JSONtoMap(reply);
 	}
 	
+	/**
+	 * Uses Jackson to convert a JSON string to an object
+	 * @param pJSON STring in a JSON format
+	 * @return Map of the same JSON object
+	 * @throws Exception propagates the exceptions thrown by Jackson's functions
+	 */
 	private Map<String, Object> JSONtoMap(String pJSON) throws Exception
 	{
 		ObjectMapper mapper = new ObjectMapper();  

@@ -1,3 +1,5 @@
 INDEX VERSION 1.126
+D:\Documents\GitHub\TwitchtvstreamAlert\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3008349906.index
+\steamAlert\src
 D:\Documents\GitHub\TwitchtvstreamAlert\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3562717105.index
 \streamAlert\src

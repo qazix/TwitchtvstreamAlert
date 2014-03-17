@@ -1,0 +1,5 @@
+127.0.0.1 - - [16/Mar/2014:21:56:52 -0600] "GET / HTTP/1.1" 404 951
+0:0:0:0:0:0:0:1 - - [16/Mar/2014:21:56:53 -0600] "GET /streamAlert/signIn HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2014:21:56:57 -0600] "GET /streamAlert/callback?code=d9ke06ryftmq0q98euirajivlhsm3g8&scope=user_read HTTP/1.1" 200 323
+0:0:0:0:0:0:0:1 - - [16/Mar/2014:21:57:16 -0600] "GET /streamAlert/signIn HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [16/Mar/2014:21:57:17 -0600] "GET /streamAlert/callback?code=d9ke06ryftmq0q98euirajivlhsm3g8&scope=user_read HTTP/1.1" 200 325

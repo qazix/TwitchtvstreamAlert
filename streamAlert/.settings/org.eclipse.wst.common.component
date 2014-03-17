@@ -2,7 +2,7 @@
     <wb-module deploy-name="streamAlert">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="streamAlert"/>
         <property name="java-output-path" value="/streamAlert/build/classes"/>
+        <property name="context-root" value="streamAlert"/>
     </wb-module>
 </project-modules>

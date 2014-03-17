@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;streamAlert&apos; to &apos;steamAlert&apos;" description="Rename resource &apos;streamAlert&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/streamAlert" name="steamAlert" stamp="1395029074837" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;steamAlert&apos; to &apos;streamAlert&apos;" description="Rename resource &apos;steamAlert&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/steamAlert" name="streamAlert" stamp="1395030875988" updateReferences="true"/>
+</session>
