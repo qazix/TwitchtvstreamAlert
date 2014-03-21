@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -28,17 +30,21 @@ public class callback extends HttpServlet {
 	 * The authentication key from Twitch
 	 */
 	private String mAuthKey;
+	private String mUser;
+	private int mNumFollowers;
+	private List<Object> mFollowers;
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
     public callback() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestURI = request.getScheme() + "://" + request.getServerName() + ":" + 
 				request.getServerPort() + request.getRequestURI();
@@ -58,11 +64,29 @@ public class callback extends HttpServlet {
 				//Gets the JSON object as a map which contains the authentication key
 				Map<String, Object> authkeyMap = getAuthMap(code, cbURL);
 				mAuthKey = authkeyMap.get("access_token").toString();
+				
 				//Get the User JSON object
 				Map<String, Object> userMap = getUserMap();
+				mUser = (String)userMap.get("name");
 				
-				response.getWriter().println(userMap.get("display_name") + "<br />");
-				request.setAttribute("name", userMap.get("display_name"));
+				//Grab that users followers
+				Map<String, Object> followerMap = getFollowers();
+				mNumFollowers =  (int) followerMap.get("_total");
+				mFollowers = (ArrayList<Object>) followerMap.get("follows");
+				List<Object> followerName = new ArrayList<Object>();
+				
+				response.getWriter().println("Num Followers: " + mNumFollowers + "<br />");
+				
+				for (int i = 0; i < mFollowers.size(); ++i)
+				{
+					
+					Map<String, Object> follower = (Map<String, Object>) mFollowers.get(i);
+					Map<String, Object> followerInfo = (Map<String, Object>) follower.get("user");
+					followerName.add(followerInfo.get("display_name"));
+				}
+				request.setAttribute("name", mUser);
+				request.setAttribute("numFollowers", mNumFollowers);
+				request.setAttribute("followers", followerName);
 				
 				request.getRequestDispatcher("/view.jsp").forward(request, response);
 			} 
@@ -133,6 +157,27 @@ public class callback extends HttpServlet {
 		cnx.setRequestProperty("X-Requested-With", "Curl");
 		cnx.setRequestProperty("Accept", "application/vnd.twitchtv.v2+json");
 		cnx.setRequestProperty("Authorization", "OAuth " + mAuthKey);
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(cnx.getInputStream()));
+		String reply = br.readLine();
+		
+		return JSONtoMap(reply);
+	}
+	
+	/**
+	 * Returns the JSON object of followers
+	 * @param pUser The user who's channel we're looking for
+	 * @return JSON object of followers
+	 * @throws Exception
+	 */
+	private Map<String, Object> getFollowers() throws Exception
+	{
+		URL followerReq = new URL("https://api.twitch.tv/kraken/channels/" + 
+								  mUser + "/follows");
+		URLConnection cnx = followerReq.openConnection();
+		
+		cnx.setRequestProperty("X-Requested-With", "Curl");
+		cnx.setRequestProperty("Accept", "application/vnd.twitchtv.v2+json");
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(cnx.getInputStream()));
 		String reply = br.readLine();
