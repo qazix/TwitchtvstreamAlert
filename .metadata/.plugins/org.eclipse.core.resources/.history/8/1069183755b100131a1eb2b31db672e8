@@ -7,9 +7,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +33,6 @@ public class callback extends HttpServlet {
 	private String mUser;
 	private int mNumFollowers;
 	private List<Object> mFollowers;
-	private Date mLastDate;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -77,7 +74,6 @@ public class callback extends HttpServlet {
 				mNumFollowers =  (int) followerMap.get("_total");
 				mFollowers = (ArrayList<Object>) followerMap.get("follows");
 				List<Object> followerName = new ArrayList<Object>();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 				
 				response.getWriter().println("Num Followers: " + mNumFollowers + "<br />");
 				
@@ -86,7 +82,6 @@ public class callback extends HttpServlet {
 					
 					Map<String, Object> follower = (Map<String, Object>) mFollowers.get(i);
 					Map<String, Object> followerInfo = (Map<String, Object>) follower.get("user");
-					System.out.println(sdf.parse((String) follower.get("created_at")));
 					response.getWriter().println(follower);
 					followerName.add(followerInfo.get("display_name"));
 				}

@@ -9,7 +9,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -35,7 +34,6 @@ public class callback extends HttpServlet {
 	private String mUser;
 	private int mNumFollowers;
 	private List<Object> mFollowers;
-	private Date mLastDate;
 	
     /**
      * @see HttpServlet#HttpServlet()
