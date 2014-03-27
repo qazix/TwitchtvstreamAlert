@@ -1,0 +1,37 @@
+import java.io.*;
+import java.util.*;
+
+public class PropertiesService
+{
+	private static Map<String, String> mMap = new HashMap<String, String>();
+	
+	static
+	{
+		try
+		{
+			String line;
+			String[] pairs;
+			String filePath = new File("src" + File.separator + "properties.prop").getAbsolutePath();
+			BufferedReader br = new BufferedReader(new FileReader(new File(filePath)));
+			System.out.println(filePath);
+			while((line = br.readLine()) != null)
+			{
+				pairs = line.split("=");
+				mMap.put(pairs[0], pairs[1]);
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+	
+	public PropertiesService()
+	{
+	}
+	
+	public static String get(String pKey)
+	{
+		return mMap.get(pKey);
+	}
+}

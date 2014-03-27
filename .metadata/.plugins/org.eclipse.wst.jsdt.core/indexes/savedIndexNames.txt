@@ -5,4 +5,3 @@ INDEX VERSION 1.3+D:\Documents\GitHub\TwitchtvstreamAlert\.metadata\.plugins\org
 2723911439.index
 3209892806.index
 355287155.index
-3562717105.index

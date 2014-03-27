@@ -33,9 +33,8 @@ public class callback extends HttpServlet {
 	 */
 	private String mAuthKey;
 	private String mUser;
-	private int mNumFollowers;
 	private List<Object> mFollowers;
-	private Date mLastDate;
+
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,14 +50,12 @@ public class callback extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestURI = request.getScheme() + "://" + request.getServerName() + ":" + 
 				request.getServerPort() + request.getRequestURI();
-		//System.out.println(requestURI);
 		int lastSlashIndex = requestURI.lastIndexOf("/");
 
 		String cbURL = requestURI.substring(0, lastSlashIndex) + "/callback";
 		
 		//this is the code autheticating our client
 		String code = request.getParameter("code");
-//		response.getWriter().println("Your code is " + code + "<br />");
 		
 		if (code != "" && code != null)
 		{
@@ -73,17 +70,13 @@ public class callback extends HttpServlet {
 				mUser = (String)userMap.get("name");
 				
 				//Grab that users followers
-				Map<String, Object> followerMap = getFollowers();
-				mNumFollowers =  (int) followerMap.get("_total");
+				Map<String, Object> followerMap = Followers.getFollowers(mUser);
 				mFollowers = (ArrayList<Object>) followerMap.get("follows");
 				List<Object> followerName = new ArrayList<Object>();
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
 				
-				response.getWriter().println("Num Followers: " + mNumFollowers + "<br />");
-				
 				for (int i = 0; i < mFollowers.size(); ++i)
 				{
-					
 					Map<String, Object> follower = (Map<String, Object>) mFollowers.get(i);
 					Map<String, Object> followerInfo = (Map<String, Object>) follower.get("user");
 					System.out.println(sdf.parse((String) follower.get("created_at")));
@@ -91,10 +84,10 @@ public class callback extends HttpServlet {
 					followerName.add(followerInfo.get("display_name"));
 				}
 				request.setAttribute("name", mUser);
-				request.setAttribute("numFollowers", mNumFollowers);
+				request.setAttribute("numFollowers", mFollowers.size());
 				request.setAttribute("followers", followerName);
 				
-//				request.getRequestDispatcher("/view.jsp").forward(request, response);
+				request.getRequestDispatcher("/view.jsp").forward(request, response);
 			} 
 			catch (Exception e) 
 			{
@@ -120,8 +113,8 @@ public class callback extends HttpServlet {
 	{		
 		//This is the URL to get the authentication key and Post params
 		URL tokenReq = new URL("https://api.twitch.tv/kraken/oauth2/token");
-		String params = "client_id=jnu1pncqiy1terszj189ejzjomd911r" +
-						"&client_secret=amgjqsl072wc33trwujysixxs3aqlua" +
+		String params = "client_id=" + PropertiesService.get("clientID") +
+						"&client_secret=" + PropertiesService.get("client_secret")  + 
 						"&grant_type=authorization_code" +
 						"&redirect_uri=" + cbURL +
 						"&code=" + pCode;
@@ -145,7 +138,7 @@ public class callback extends HttpServlet {
 		BufferedReader br = new BufferedReader(new InputStreamReader(cnx.getInputStream()));
 		String reply = br.readLine();
 				
-		return JSONtoMap(reply);
+		return PropertiesService.JSONtoMap(reply);
 	}
 	
 	/**
@@ -167,44 +160,6 @@ public class callback extends HttpServlet {
 		BufferedReader br = new BufferedReader(new InputStreamReader(cnx.getInputStream()));
 		String reply = br.readLine();
 		
-		return JSONtoMap(reply);
-	}
-	
-	/**
-	 * Returns the JSON object of followers
-	 * @param pUser The user who's channel we're looking for
-	 * @return JSON object of followers
-	 * @throws Exception
-	 */
-	private Map<String, Object> getFollowers() throws Exception
-	{
-		URL followerReq = new URL("https://api.twitch.tv/kraken/channels/" + 
-								  mUser + "/follows");
-		URLConnection cnx = followerReq.openConnection();
-		
-		cnx.setRequestProperty("X-Requested-With", "Curl");
-		cnx.setRequestProperty("Accept", "application/vnd.twitchtv.v2+json");
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(cnx.getInputStream()));
-		String reply = br.readLine();
-		
-		return JSONtoMap(reply);
-	}
-	
-	/**
-	 * Uses Jackson to convert a JSON string to an object
-	 * @param pJSON STring in a JSON format
-	 * @return Map of the same JSON object
-	 * @throws Exception propagates the exceptions thrown by Jackson's functions
-	 */
-	private Map<String, Object> JSONtoMap(String pJSON) throws Exception
-	{
-		ObjectMapper mapper = new ObjectMapper();  
-
-	    @SuppressWarnings("unchecked")
-		Map<String,Object> map = mapper.readValue(pJSON.getBytes(), Map.class); 
-//	    System.out.println("Got " + map); 
-	    
-	    return map;
+		return PropertiesService.JSONtoMap(reply);
 	}
 }
