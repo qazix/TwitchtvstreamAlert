@@ -7,9 +7,6 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -18,8 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Servlet implementation class callback
@@ -34,7 +29,7 @@ public class callback extends HttpServlet {
 	private String mAuthKey;
 	private String mUser;
 	private List<Object> mFollowers;
-
+	private long mLastDate;
 	
     /**
      * @see HttpServlet#HttpServlet()
@@ -70,22 +65,18 @@ public class callback extends HttpServlet {
 				mUser = (String)userMap.get("name");
 				
 				//Grab that users followers
-				Map<String, Object> followerMap = Followers.getFollowers(mUser);
-				mFollowers = (ArrayList<Object>) followerMap.get("follows");
-				List<Object> followerName = new ArrayList<Object>();
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
+				mFollowers = Followers.getRecentFollowers(mUser);				
 				
-				for (int i = 0; i < mFollowers.size(); ++i)
-				{
-					Map<String, Object> follower = (Map<String, Object>) mFollowers.get(i);
-					Map<String, Object> followerInfo = (Map<String, Object>) follower.get("user");
-					System.out.println(sdf.parse((String) follower.get("created_at")));
-					response.getWriter().println(follower);
-					followerName.add(followerInfo.get("display_name"));
-				}
-				request.setAttribute("name", mUser);
+				//Gets the last follower and the time he followed you
+				Map<String, Object> follower = (Map<String, Object>) mFollowers.get(0);
+				mLastDate = Followers.getSDF().parse((String) follower.get("created_at")).getTime();
+				
+				request.getSession().setAttribute("name", mUser);
 				request.setAttribute("numFollowers", mFollowers.size());
-				request.setAttribute("followers", followerName);
+				request.setAttribute("followers", mFollowers);
+				request.getSession().setAttribute("lastDate", mLastDate);
+				
+				response.getWriter().println(mFollowers);
 				
 				request.getRequestDispatcher("/view.jsp").forward(request, response);
 			} 

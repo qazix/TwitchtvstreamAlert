@@ -14,7 +14,6 @@ public class PropertiesService
 		{
 			InputStream is = PropertiesService.class.getClassLoader().getResourceAsStream("properties.prop");
 			mProp.load(is);
-			System.out.println("Prop size: " + mProp.size());
 		}
 		catch(Exception e)
 		{

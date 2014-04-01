@@ -1,0 +1,36 @@
+/**
+ * 
+ */
+function getXMLRequest(func)
+{
+	var xmlRequest = new XMLHttpRequest();
+      xmlRequest.onreadystatechange = function() {
+         if (xmlRequest.readyState == 4 && xmlRequest.status == 200)
+         {
+            func(xmlRequest.responseText);
+         }
+      };
+   
+   return xmlRequest;   
+}
+
+function fetch()
+{
+	var xmlRequest = getXMLRequest(function(text){
+		var JSONobj =  eval('('+text+')');
+		var nameField = document.getElementById("nameField");
+		var logoField = document.getElementById("logo");
+		
+		alert(JSONobj.length);
+		
+		for(var i = 0; i < JSONobj.length; ++i)
+		{
+			nameField.innerHTML = JSONobj[i].user.display_name;
+			logoField.setAttribute("src", JSONobj[i].user.logo);
+		}
+	});
+	xmlRequest.open("GET", "Followers", true);
+	xmlRequest.send();
+	
+
+}
