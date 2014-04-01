@@ -40,27 +40,20 @@ function updateDB()
 	alert(params);
 }
 
-function showAlert(name, imgUrl)
-{
-	document.getElementById("nameField").innerHTML = name;
-	document.getElementById("logo").setAttribute("src", imgUrl);
-}
-
-function test()
-{
-	showAlert("Test Alert", "http://www.iiacanadanationalconference.com/wp-content/uploads/2013/01/test.jpg");
-}
-
 function fetch()
 {
 //	var xmlRequest = getXMLRequest(function(text){
 	var testRequest = getTestStuff(function(text){
 		var JSONobj =  eval('('+text+')');
+		var nameField = document.getElementById("nameField");
+		var logoField = document.getElementById("logo");
+		
+		alert(JSONobj.length);
 		
 		for(var i = 0; i < JSONobj.length; ++i)
 		{
-			showAlert(JSONobj[i].user.display_name,
-					  JSONobj[i].user.logo);
+			nameField.innerHTML = JSONobj[i].user.display_name;
+			logoField.setAttribute("src", JSONobj[i].user.logo);
 		}
 	});
 //	xmlRequest.open("GET", "Followers", true);

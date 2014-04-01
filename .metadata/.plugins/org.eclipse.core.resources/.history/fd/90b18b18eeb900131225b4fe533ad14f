@@ -43,7 +43,7 @@ function updateDB()
 function showAlert(name, imgUrl)
 {
 	document.getElementById("nameField").innerHTML = name;
-	document.getElementById("logo").setAttribute("src", imgUrl);
+	document.getElementById("logo").setAttribute("src", JSONobj[i].user.logo);
 }
 
 function test()
@@ -57,10 +57,12 @@ function fetch()
 	var testRequest = getTestStuff(function(text){
 		var JSONobj =  eval('('+text+')');
 		
+		alert(JSONobj.length);
+		
 		for(var i = 0; i < JSONobj.length; ++i)
 		{
-			showAlert(JSONobj[i].user.display_name,
-					  JSONobj[i].user.logo);
+			showAlert(nameField.innerHTML = JSONobj[i].user.display_name,
+					  logoField.setAttribute("src", JSONobj[i].user.logo));
 		}
 	});
 //	xmlRequest.open("GET", "Followers", true);

@@ -22,45 +22,20 @@ function getTestStuff(func)
 	return 2;
 }
 
-function updateDB()
-{
-	var formElements = document.settings.elemements;
-	var params = ""; 
-	
-	for (var i = 0; i < formElements.length; ++i)
-	{
-		var fieldName = formElements[i].name;
-		var fieldValue = formElements[i].value;
-		
-		params += fieldName + '=' + fieldValue + '&';
-	}
-	
-	params = params.substring(0, substring.length - 1);
-	
-	alert(params);
-}
-
-function showAlert(name, imgUrl)
-{
-	document.getElementById("nameField").innerHTML = name;
-	document.getElementById("logo").setAttribute("src", imgUrl);
-}
-
-function test()
-{
-	showAlert("Test Alert", "http://www.iiacanadanationalconference.com/wp-content/uploads/2013/01/test.jpg");
-}
-
 function fetch()
 {
 //	var xmlRequest = getXMLRequest(function(text){
 	var testRequest = getTestStuff(function(text){
 		var JSONobj =  eval('('+text+')');
+		var nameField = document.getElementById("nameField");
+		var logoField = document.getElementById("logo");
+		
+		alert(JSONobj.length);
 		
 		for(var i = 0; i < JSONobj.length; ++i)
 		{
-			showAlert(JSONobj[i].user.display_name,
-					  JSONobj[i].user.logo);
+			nameField.innerHTML = JSONobj[i].user.display_name;
+			logoField.setAttribute("src", JSONobj[i].user.logo);
 		}
 	});
 //	xmlRequest.open("GET", "Followers", true);
