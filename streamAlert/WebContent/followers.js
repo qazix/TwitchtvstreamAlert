@@ -16,6 +16,11 @@ function getXMLRequest(func)
    return xmlRequest;   
 }
 
+function timer()
+{
+	setInterval(fetch, 15000);
+}
+
 function getTestStuff(func)
 {
 	func(testString);
@@ -24,20 +29,10 @@ function getTestStuff(func)
 
 function updateDB()
 {
-	var formElements = document.settings.elemements;
-	var params = ""; 
-	
-	for (var i = 0; i < formElements.length; ++i)
-	{
-		var fieldName = formElements[i].name;
-		var fieldValue = formElements[i].value;
-		
-		params += fieldName + '=' + fieldValue + '&';
-	}
-	
-	params = params.substring(0, substring.length - 1);
-	
-	alert(params);
+	var check = document.getElementById("extCSS").value;
+	var urlregex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	var isGood = urlregex.test(check);
+	return isGood;
 }
 
 function showAlert(name, imgUrl)
@@ -48,7 +43,7 @@ function showAlert(name, imgUrl)
 
 function test()
 {
-	showAlert("Test Alert", "http://www.iiacanadanationalconference.com/wp-content/uploads/2013/01/test.jpg");
+	showAlert("Test_Alert", "http://www.iiacanadanationalconference.com/wp-content/uploads/2013/01/test.jpg");
 }
 
 function fetch()

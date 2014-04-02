@@ -10,7 +10,7 @@
 <script type="text/javascript" src="followers.js"></script>
 <title>User Name</title>
 </head>
-<body onload="fetch()">
+<body onload="timer()">
 	<h1>After a lot of work this is your user name "${name}" you have ${numFollowers} friends</h1>
 	<ul>
 		<c:forEach items="${followers}" var="follower">

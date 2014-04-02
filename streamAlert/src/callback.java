@@ -78,7 +78,7 @@ public class callback extends HttpServlet {
 				
 				response.getWriter().println(mFollowers);
 				
-				request.getRequestDispatcher("/view.jsp").forward(request, response);
+				request.getRequestDispatcher("/streamDB").forward(request, response);
 			} 
 			catch (Exception e) 
 			{

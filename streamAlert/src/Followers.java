@@ -9,8 +9,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,9 +27,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Followers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'");
-	private int mNumFollowers;
-	private List<Object> mFollowers;
-	private Date mLastDate;
        
 	
 	public static SimpleDateFormat getSDF()
@@ -111,6 +106,7 @@ public class Followers extends HttpServlet {
 	 * @return List of map of the follower info
 	 * @throws Exception
 	 */
+	@SuppressWarnings("unchecked")
 	public static List<Object> getRecentFollowers(String pUser, long pDate) throws Exception
 	{
 		List<Object> iRecentFollowers = new ArrayList<Object>();
