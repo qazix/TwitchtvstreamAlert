@@ -1,9 +1,0 @@
-127.0.0.1 - - [24/Mar/2014:13:24:09 -0600] "GET / HTTP/1.1" 404 951
-0:0:0:0:0:0:0:1 - - [24/Mar/2014:13:24:12 -0600] "GET /streamAlert/signIn HTTP/1.1" 302 -
-0:0:0:0:0:0:0:1 - - [24/Mar/2014:13:24:15 -0600] "GET /streamAlert/callback?code=d9ke06ryftmq0q98euirajivlhsm3g8&scope=user_read HTTP/1.1" 200 1440
-127.0.0.1 - - [24/Mar/2014:13:25:05 -0600] "GET / HTTP/1.1" 404 951
-0:0:0:0:0:0:0:1 - - [24/Mar/2014:13:25:06 -0600] "GET /streamAlert/signIn HTTP/1.1" 302 -
-0:0:0:0:0:0:0:1 - - [24/Mar/2014:13:25:08 -0600] "GET /streamAlert/callback?code=d9ke06ryftmq0q98euirajivlhsm3g8&scope=user_read HTTP/1.1" 200 484
-0:0:0:0:0:0:0:1 - - [24/Mar/2014:13:27:31 -0600] "GET /streamAlert/callback?error=redirect_uri_mismatch&error_description=Parameter+redirect_uri+does+not+match+registered+URI HTTP/1.1" 200 -
-0:0:0:0:0:0:0:1 - - [24/Mar/2014:13:27:31 -0600] "GET /favicon.ico HTTP/1.1" 404 973
-0:0:0:0:0:0:0:1 - - [24/Mar/2014:13:27:31 -0600] "GET /favicon.ico HTTP/1.1" 404 973
