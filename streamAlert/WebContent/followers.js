@@ -27,11 +27,30 @@ function getTestStuff(func)
 	return 2;
 }
 
+function checkFontSize(size)
+{
+	return (size <= 64 && size >= 10);
+}
+
+function checkUrl(url)
+{
+	var urlregex = /^((https|http):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+	var isGood = urlregex.test(url);
+	return isGood;
+}
+
+function checkHex(hex)
+{
+	var colorregex = /^[A-Fa-f0-5]{6}/;
+	var isGood = colorregex.test(hex);
+	return isGood;
+}
+
 function updateDB()
 {
-	var check = document.getElementById("extCSS").value;
-	var urlregex = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-	var isGood = urlregex.test(check);
+	var extCSS = document.getElementById("extCSS").value;
+	isGood = checkUrl(extCSS);
+	
 	return isGood;
 }
 

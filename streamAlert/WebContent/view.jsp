@@ -13,7 +13,7 @@
 		<style> /* User Style Settings Created at page load from DB */
 
 		</style>
-		<!-- <link href='<external css url>' rel='stylesheet' type='text/css'> -->
+		<link href='${ExtCSS}' rel='stylesheet' type='text/css'> 
 	</head>
 	<body onload="timer()">
 		<header>
@@ -21,11 +21,11 @@
 			<h2>ReynoldsCahoon</h2>
 			<form id="settings">
 				<fieldset id="style">
-					<input type="color" name="chroma" value="ff0000" />
-					<input type="color" name="background" value="ff0000" />
-					<input type="color" name="fontcolor" value="ff0000" />
-					<input type="number" name="fontsize" min="10" max="64" value="32" />
-					<input type="url" name="externalcss" />
+					<input type="color" name="chroma" value="${ChromaColor}" />
+					<input type="color" name="background" value="${BGColor}" />
+					<input type="color" name="fontcolor" value="${FontColor}" />
+					<input type="number" name="fontsize" min="10" max="64" value="${FontSize}" />
+					<input type="url" name="externalcss" value="${ExtCSS}"/>
 				</fieldset>
 				<fieldset id="notif">
 					<label for="userpicture">Show User Picture</label>

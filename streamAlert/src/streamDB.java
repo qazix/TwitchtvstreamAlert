@@ -18,11 +18,11 @@ public class streamDB extends HttpServlet {
 	
 	// JDBC driver name and database URL
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	private static final String DB_URL = "jdbc:mysql://localhost/EMP";
+	private static final String DB_URL = "jdbc:mysql://localhost/streamalert";
 	
 	//  Database credentials
-	private static final String USER = "username";
-	private static final String PASS = "password";
+	private static final String USER = "TSADBuser";
+	private static final String PASS = "userTSADB";
 		
 	private Connection conn;
        
@@ -31,43 +31,41 @@ public class streamDB extends HttpServlet {
      */
     public streamDB() {
         super();
-        try
-        {
-        	Class.forName("com.mysql.jdbc.Driver");
-        	conn = DriverManager.getConnection(DB_URL, USER, PASS);
-        }
-        catch (Exception e)
-        {
-        	e.printStackTrace();
-        }
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String name = (String) request.getSession().getAttribute("name");
 		Statement stmt = null;
 		String BGColor = "";
 		String ChromaColor = "";
 		String FontColor = "";
-		int FontSize = 12;
+		int FontSize = 32;
 		String ExtCSS = "";
 		boolean ShowPic = true;
 		
 		try
 		{
+	    	Class.forName("com.mysql.jdbc.Driver");
+	    	conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
-			String sql = "SELECT * FROM user WHERE twitchid = '" + request.getSession().getAttribute("name") + "'";
+			System.out.println("creating a statement");
+			String sql = "SELECT * FROM user WHERE twitchid = '" + name + "'";
 			ResultSet rs = stmt.executeQuery(sql);
+			
 			if (rs.wasNull())
 			{
-				sql = "INSERT INTO user SET twitchid = '" + request.getSession().getAttribute("name") + "'";
+				System.out.println("no user in db creating row");
+				sql = "INSERT INTO user SET twitchid = '" + name + "'";
 				int numRs = stmt.executeUpdate(sql);
 				if (numRs < 1)
 					throw(new Exception());
 				else
 				{
-					sql = "SELECT * FROM user WHERE twitchid = '" + request.getSession().getAttribute("name") + "'";
+					sql = "SELECT * FROM user WHERE twitchid = '" + name + "'";
 					rs.close();
 					rs = stmt.executeQuery(sql);
 				}
@@ -125,6 +123,8 @@ public class streamDB extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try
 		{
+	    	Class.forName("com.mysql.jdbc.Driver");
+	    	conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			Statement stmt = conn.createStatement();
 			String sql = "UPDATE user SET bgcolor = '" + request.getAttribute("BGColor") +
 						 "', chromacolor = '" + request.getAttribute("ChromaColor") + 
