@@ -21,8 +21,8 @@ public class streamDB extends HttpServlet {
 	private static final String DB_URL = "jdbc:mysql://localhost/streamalert";
 	
 	//  Database credentials
-	private static final String USER = "TSADBuser";
-	private static final String PASS = "userTSADB";
+	private static final String USER = "TSADBuser";//"TSAawayUser";
+	private static final String PASS = "userTSADB";//"awayUserTSA";
 		
 	private Connection conn;
        
@@ -49,14 +49,14 @@ public class streamDB extends HttpServlet {
 		
 		try
 		{
-	    	Class.forName("com.mysql.jdbc.Driver");
+	    	Class.forName(JDBC_DRIVER);
 	    	conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			stmt = conn.createStatement();
 			System.out.println("creating a statement");
 			String sql = "SELECT * FROM user WHERE twitchid = '" + name + "'";
 			ResultSet rs = stmt.executeQuery(sql);
 			
-			if (rs.wasNull())
+			if (!rs.next())
 			{
 				System.out.println("no user in db creating row");
 				sql = "INSERT INTO user SET twitchid = '" + name + "'";
@@ -68,15 +68,16 @@ public class streamDB extends HttpServlet {
 					sql = "SELECT * FROM user WHERE twitchid = '" + name + "'";
 					rs.close();
 					rs = stmt.executeQuery(sql);
+					if(!rs.next())
+						throw(new Exception());
 				}
 			}
 			
-			rs.next();
 			BGColor = rs.getString("bgcolor");
 			ChromaColor = rs.getString("chromacolor");
 			FontColor = rs.getString("fontcolor");
 			FontSize = rs.getInt("fontsize");
-			ExtCSS = rs.getString("extnernalcss");
+			ExtCSS = rs.getString("externalcss");
 			ShowPic = rs.getInt("userpicture") > 0;
 			
 			stmt.close();

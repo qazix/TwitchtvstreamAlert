@@ -58,6 +58,7 @@ function showAlert(name, imgUrl)
 {
 	document.getElementById("nameField").innerHTML = name;
 	document.getElementById("logo").setAttribute("src", imgUrl);
+//	setTimeout(10000);
 }
 
 function test()

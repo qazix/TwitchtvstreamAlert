@@ -17,7 +17,7 @@
 	</head>
 	<body onload="timer()">
 		<header>
-			<h1>StreamAlert<h1>
+			<h1>StreamAlert</h1>
 			<h2>ReynoldsCahoon</h2>
 			<form id="settings">
 				<fieldset id="style">
@@ -30,12 +30,13 @@
 				<fieldset id="notif">
 					<label for="userpicture">Show User Picture</label>
 					<input type="checkbox" name="userpicture" value="true" />
-					<button>Test Alert</button>
+					<input type="button" value="Test Alert" onclick="test()"/>
 				</fieldset>
 			</form>
 		</header>
 		<footer>
-			Test Notification
+			<img id="logo"/>
+			<p id="nameField"></p>
 		</footer>
 	</body>
 </html>
