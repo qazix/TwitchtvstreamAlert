@@ -11,11 +11,16 @@
 		<link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
 		<link href='css/default.css' rel='stylesheet' type='text/css'>
 		<style> /* User Style Settings Created at page load from DB */
-
+			body{
+				background-color: #${ChromaColor}; }
+			footer{
+				background-color: #${BGColor}; 
+				font-size: ${FontSize}; 
+				color: #${FontColor}; }
 		</style>
 		<link href='${ExtCSS}' rel='stylesheet' type='text/css'> 
 	</head>
-	<body onload="timer()">
+	<body onload="fetch()">
 		<header>
 			<h1>StreamAlert</h1>
 			<h2>ReynoldsCahoon</h2>

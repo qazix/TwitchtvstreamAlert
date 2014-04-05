@@ -18,7 +18,6 @@ function getXMLRequest(func)
 
 function timer()
 {
-	setInterval(fetch, 15000);
 }
 
 function getTestStuff(func)
@@ -58,7 +57,6 @@ function showAlert(name, imgUrl)
 {
 	document.getElementById("nameField").innerHTML = name;
 	document.getElementById("logo").setAttribute("src", imgUrl);
-//	setTimeout(10000);
 }
 
 function test()
@@ -72,10 +70,12 @@ function fetch()
 	var testRequest = getTestStuff(function(text){
 		var JSONobj =  eval('('+text+')');
 		
+		setTimeout(fetch, 15000 * (JSONobj.length + 1));
+		
 		for(var i = 0; i < JSONobj.length; ++i)
 		{
-			showAlert(JSONobj[i].user.display_name,
-					  JSONobj[i].user.logo);
+			setTimeout(showAlert(JSONobj[i].user.display_name,
+					   JSONobj[i].user.logo), 15000 * i);
 		}
 	});
 //	xmlRequest.open("GET", "Followers", true);
