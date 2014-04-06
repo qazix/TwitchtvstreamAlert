@@ -121,11 +121,9 @@ function fetch()
 		
 		for(var i = 0; i < JSONobj.length; ++i)
 		{
-			setTimeout(function()
-					   {
-						  showAlert(JSONobj[i].user.display_name,
-								    JSONobj[i].user.logo);
-					   }, 15000 * i);
+			setTimeout(showAlert, 15000 * i, 
+					   JSONobj[i].user.display_name,
+					   JSONobj[i].user.logo);
 		}
 	});
 //	xmlRequest.open("GET", "Followers", true);
