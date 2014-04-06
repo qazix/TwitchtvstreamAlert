@@ -115,7 +115,7 @@ function fetch()
 {
 //	var xmlRequest = getXMLRequest(function(text){
 	var testRequest = getTestStuff(function(text){
-		var JSONobj =  eval('('+text+')');
+		JSONobj =  eval('('+text+')');
 		
 		setTimeout(fetch, 15000 * (JSONobj.length + 1));
 		
