@@ -64,14 +64,25 @@ form#settings{
 	position: absolute;
 	right: 0;
 	top: 0;
+	margin: 0 0 0 230px;
+	padding: 0;
 }
 fieldset{
 	float: right;
 	border: none;
-	margin-top: 10px;
+	margin: 0;
+	padding: 0;
 }
 fieldset#style{
-	border-color: #FFFFFF;
+	width: 450px;
+	margin: 0;
+	padding: 0;
+}
+fieldset#notif{
+	margin: 0 10px 0 0;
+	padding: 0;
+	width: 140px;
+	text-align: right;
 }
 footer p{
 	display: inline-block;
@@ -84,7 +95,18 @@ input{
 	font-family: Georgia, Times, "Times New Roman", serif;
 	font-size: 12px;
 }
+label{
+	font-size: 12px;
+}
 input[type="button"]{
+	background-color: #6441a5;
+	color: white;
+	font-family: 'Bangers', cursive;
+	border: none;
+	border-radius: 4px;
+	font-size: 18px;
+}
+input[type="submit"]{
 	background-color: #6441a5;
 	color: white;
 	font-family: 'Bangers', cursive;
