@@ -117,11 +117,11 @@ function fetch()
 	var testRequest = getTestStuff(function(text){
 		JSONobj =  eval('('+text+')');
 		
-		setTimeout(fetch, 15000 * (JSONobj.length + 1));
+		setTimeout(fetch, 8000 * (JSONobj.length) + 15000);
 		
 		for(var i = 0; i < JSONobj.length; ++i)
 		{
-			setTimeout(showAlert, 15000 * i, 
+			setTimeout(showAlert, 8000 * i, 
 					   JSONobj[i].user.display_name,
 					   JSONobj[i].user.logo);
 		}
