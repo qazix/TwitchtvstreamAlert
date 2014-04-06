@@ -61,6 +61,8 @@ form#settings{
 }
 fieldset{
 	float: right;
+	border: none;
+	margin-top: 10px;
 }
 fieldset#style{
 	border-color: #FFFFFF;
