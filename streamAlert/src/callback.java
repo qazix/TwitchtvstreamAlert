@@ -28,6 +28,7 @@ public class callback extends HttpServlet {
 	 */
 	private String mAuthKey;
 	private String mUser;
+	private String mPicURL;
 	private List<Object> mFollowers;
 	private long mLastDate;
 	
@@ -63,6 +64,7 @@ public class callback extends HttpServlet {
 				//Get the User JSON object
 				Map<String, Object> userMap = getUserMap();
 				mUser = (String)userMap.get("name");
+				mPicURL = (String)userMap.get("logo");
 				
 				//Grab that users followers
 				mFollowers = Followers.getRecentFollowers(mUser);				
@@ -72,6 +74,7 @@ public class callback extends HttpServlet {
 				mLastDate = Followers.getSDF().parse((String) follower.get("created_at")).getTime();
 				
 				request.getSession().setAttribute("name", mUser);
+				request.setAttribute("picURL", mPicURL);
 				request.setAttribute("numFollowers", mFollowers.size());
 				request.setAttribute("followers", mFollowers);
 				request.getSession().setAttribute("lastDate", mLastDate);

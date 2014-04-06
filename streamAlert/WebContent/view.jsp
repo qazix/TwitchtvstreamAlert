@@ -23,7 +23,7 @@
 	<body onload="fetch()">
 		<header>
 			<h1>StreamAlert</h1>
-			<h2>ReynoldsCahoon</h2>
+			<h2 style="background-image: '${picURL}'">${name}</h2>
 			<form id="settings">
 				<fieldset id="style">
 					<input type="color" name="chroma" value="${ChromaColor}" />

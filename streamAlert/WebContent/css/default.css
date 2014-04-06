@@ -18,7 +18,6 @@ header{
 header h2{
 	margin: -18px 0 0 64px;
 	font-size: 12px;
-	background-image: url('http://static-cdn.jtvnw.net/jtv_user_pictures/truebluelua-profile_image-411d89b65f2d423a-300x300.jpeg'); /* This needs to be in the client generated CSS, stores the logged in users profile pic */
 	background-size: 12px 12px;
 	background-repeat: no-repeat;
 	background-position-y: 2px;
