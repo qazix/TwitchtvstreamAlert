@@ -19,7 +19,7 @@
 				font-size: ${FontSize}; 
 				color: #${FontColor};
 			}
-			header{
+			header h2{
 				background-image: url(${picURL});
 			}
 		</style>
