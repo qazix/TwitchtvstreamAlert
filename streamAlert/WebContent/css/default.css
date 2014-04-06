@@ -4,9 +4,14 @@ html{
 	margin: 0;
 }
 h1{
+	font-family: 'Bangers', cursive;
+	color: #6441a5;
 	line-height: 64px;
 	margin: 0;
 	padding: 0 0 0 64px;
+	background-image: url('../Twitch-tv-logo.png');
+	background-size: 64px 64px;
+	background-repeat: no-repeat;
 }
 header{
 	background-color: white;
