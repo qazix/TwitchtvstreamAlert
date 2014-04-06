@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Twitch.tv StreamAlert</title>
+		<title>StreamAlert</title>
 		<script type="text/javascript" src="followers.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
 		<!-- IE -->
@@ -35,21 +35,27 @@
 			<h2>${name}</h2>
 			<form id="settings" method="POST" onsubmit="return updateDB()" action="/streamAlert/streamDB">
 				<fieldset id="style">
+					<label for="chroma">Chroma Color</label>
 					<input type="color" id="chroma" name="chroma" value="${ChromaColor}" onchange="checkHex(this)" />
-					<input type="color" id="background" name="background" value="${BGColor}" onchange="checkHex(this)"/>
-					<input type="color" id="fontcolor" name="fontcolor" value="${FontColor}" onchange="checkHex(this)"/>
-					<input type="number" id="fontsize" name="fontsize" min="10" max="64" value="${FontSize}" onchange="checkFontSize(this)"/>
-					<input type="url" id="externalcss" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)"/>
+					<label for="background">Alert Background Color</label>
+					<input type="color" id="background" name="background" value="${BGColor}" onchange="checkHex(this)" />
+					<label for="fontcolor">Font Color</label>
+					<input type="color" id="fontcolor" name="fontcolor" value="${FontColor}" onchange="checkHex(this)" />
+					<label for="fontsize">Font Size</label>
+					<input type="number" id="fontsize" name="fontsize" min="10" max="64" value="${FontSize}" onchange="checkFontSize(this)" />
+					<label for="externalcss">External CSS</label>
+					<input type="url" id="externalcss" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)" placeholder="http://www.yourwebsite.com/style.css" />
+					<input type="button" value="Save Settings" />
 				</fieldset>
 				<fieldset id="notif">
 					<label for="userpicture">Show User Picture</label>
 					<input type="checkbox" name="userpicture" value="true" />
-					<input type="button" value="Test Alert" onclick="test()"/>
+					<input type="button" value="Test Alert" onclick="test()" />
 				</fieldset>
 			</form>
 		</header>
 		<footer id="footer">
-			<img id="logo"/>
+			<img id="logo" />
 			<p id="nameField"></p>
 		</footer>
 	</body>
