@@ -64,6 +64,9 @@ function checkHex(hexElem)
 	var isGood = colorregex.test(check);
 	if(isGood)
 	{
+		if(check.charAt(0) != '#')
+			check = '#' + check;
+			
 		if(hexElem.name == "chroma")
 			document.getElementById("body").style.backgroundColor = check;
 		else
@@ -97,9 +100,9 @@ function showAlert(name, imgUrl)
 	document.getElementById("nameField").innerHTML = name + " has followed you!";
 	document.getElementById("logo").setAttribute("src", imgUrl);
 
-	document.getElementById("footer").style.height = "64px;";
+	document.getElementById("footer").style.height = "64px";
 	setTimeout(function hideAlert() {
-        document.getElementById("footer").style.height = "0px;";
+        document.getElementById("footer").style.height = "0px";
     }, 5000);
 }
 
