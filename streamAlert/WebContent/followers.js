@@ -38,11 +38,15 @@ function checkUrl(url)
 	return isGood;
 }
 
-function checkHex(hex)
+function checkHex(hexElem)
 {
+	var check = hexElem.value;
 	var colorregex = /^[A-Fa-f0-5]{6}/;
-	var isGood = colorregex.test(hex);
-	return isGood;
+	var isGood = colorregex.test(check);
+	if(isGood)
+		return true;
+	else
+		return false;
 }
 
 function updateDB()
