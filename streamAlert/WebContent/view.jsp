@@ -25,7 +25,7 @@
 		</style>
 		<link href='${ExtCSS}' rel='stylesheet' type='text/css'> 
 	</head>
-	<body onload="fetch()">
+	<body id="body" onload="fetch()">
 		<header>
 			<h1>StreamAlert</h1>
 			<h2>${name}</h2>

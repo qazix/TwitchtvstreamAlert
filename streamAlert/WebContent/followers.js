@@ -60,10 +60,20 @@ function checkUrl(urlElem)
 function checkHex(hexElem)
 {
 	var check = hexElem.value;
-	var colorregex = /^[A-Fa-f0-5]{6}/;
+	var colorregex = /^#?[A-Fa-f0-5]{6}/;
 	var isGood = colorregex.test(check);
 	if(isGood)
 	{
+		if(hexElem.name == "chroma")
+			document.getElementById("body").style.backgroundColor = check;
+		else
+		{
+			if(hexElem.name == "background")
+				document.getElementById("footer").style.backgroundColor = check;
+			else
+				document.getElementById("footer").style.color = check;
+		}
+			
 		hexElem.style.borderColor = '#FFFFFF';
 		return true;
 	}
@@ -86,9 +96,9 @@ function showAlert(name, imgUrl)
 {
 	document.getElementById("nameField").innerHTML = name + " is following you!";
 	document.getElementById("logo").setAttribute("src", imgUrl);
-	document.getElementById("footer").style = "height: 64px;"
+	document.getElementById("footer").style = "height: 64px;";
 	setTimeout(function hideAlert() {
-        document.getElementById("footer").style = "height: 0;"
+        document.getElementById("footer").style = "height: 0;";
     }, 5000);
 }
 
