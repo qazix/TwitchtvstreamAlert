@@ -44,7 +44,7 @@
 				</fieldset>
 			</form>
 		</header>
-		<footer>
+		<footer id="footer">
 			<img id="logo"/>
 			<p id="nameField"></p>
 		</footer>
