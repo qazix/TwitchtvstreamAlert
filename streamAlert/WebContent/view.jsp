@@ -45,7 +45,7 @@
 					<input type="number" id="fontsize" name="fontsize" min="10" max="64" value="${FontSize}" onchange="checkFontSize(this)" />
 					<label for="externalcss">External CSS</label>
 					<input type="url" id="externalcss" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)" placeholder="Paste CSS URL" />
-					<input type="button" value="Save Settings" />
+					<input type="submit" value="Save Settings" />
 				</fieldset>
 				<fieldset id="notif">
 					<label for="userpicture">Show User Picture</label>

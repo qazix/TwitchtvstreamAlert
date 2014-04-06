@@ -100,6 +100,8 @@ function updateDB()
 	var isGood = checkUrl(extCSS) && checkHex(chroma) && checkHex(bgColor) &&
 			 		checkHex(fontcolor) && checkFontSize(fontsize);
 	
+	alert(isGood);
+	
 	if (isGood)
 	{
 		chroma.value = chroma.value.substring(1);
