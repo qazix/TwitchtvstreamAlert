@@ -9,6 +9,10 @@
 		<title>Twitch.tv StreamAlert</title>
 		<script type="text/javascript" src="followers.js"></script>
 		<link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+		<!-- IE -->
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+		<!-- other browsers -->
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
 		<link href='css/default.css' rel='stylesheet' type='text/css'>
 		<style> /* User Style Settings Created at page load from DB */
 			body{

@@ -7,6 +7,10 @@
 	<head>
 		<title>Twitch.tv StreamAlert</title>
 		<link href='http://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+		<!-- IE -->
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+		<!-- other browsers -->
+		<link rel="icon" type="image/x-icon" href="favicon.ico" />
 		<style>
 			html{
 				font-family: arial;
