@@ -22,7 +22,8 @@ function timer()
 
 function getTestStuff(func)
 {
-	func(testString);
+//	func(testString);
+	func("");
 	return 2;
 }
 
@@ -131,16 +132,20 @@ function fetch()
 {
 	var xmlRequest = getXMLRequest(function(text){
 //	var testRequest = getTestStuff(function(text){
-		JSONobj =  eval('('+text+')');
-		
-		setTimeout(fetch, 8000 * (JSONobj.length) + 15000);
-		
-		for(var i = 0; i < JSONobj.length; ++i)
+		if (text != "null")
 		{
-			setTimeout(showAlert, 8000 * i, 
-					   JSONobj[i].user.display_name,
-					   JSONobj[i].user.logo);
+			JSONobj =  eval('('+text+')');
+			setTimeout(fetch, 8000 * (JSONobj.length) + 15000);
+		
+			for(var i = 0; i < JSONobj.length; ++i)
+			{
+				setTimeout(showAlert, 8000 * i, 
+						JSONobj[i].user.display_name,
+						JSONobj[i].user.logo);
+			}
 		}
+		else
+			setTimeout(fetch, 15000);
 	});
 	xmlRequest.open("GET", "Followers", true);
 	xmlRequest.send();

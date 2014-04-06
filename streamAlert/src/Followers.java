@@ -51,23 +51,32 @@ public class Followers extends HttpServlet {
 		try
 		{
 			List<Object> iFollowers = getRecentFollowers(user, lastDate);
-			@SuppressWarnings("unchecked")
-			Map<String, Object> iFollower = (Map<String, Object>) iFollowers.get(0);
-			request.getSession().setAttribute("lastDate", sdf.parse((String) iFollower.get("created_at")).getTime());
 			
-			OutputStream out = new ByteArrayOutputStream();
-			ObjectMapper mapper = new ObjectMapper();
+			if(iFollowers.isEmpty())
+			{
+				response.setContentType("text/html");
+				response.getWriter().print("null");
+			}
+			else
+			{
+				@SuppressWarnings("unchecked")
+				Map<String, Object> iFollower = (Map<String, Object>) iFollowers.get(0);
+				request.getSession().setAttribute("lastDate", sdf.parse((String) iFollower.get("created_at")).getTime());
 			
-			mapper.writeValue(out, iFollowers);
-
-			response.setContentType("application/json");
-			response.getWriter().print(out.toString());
+				OutputStream out = new ByteArrayOutputStream();
+				ObjectMapper mapper = new ObjectMapper();
+			
+				mapper.writeValue(out, iFollowers);
+				response.setContentType("application/json");
+				response.getWriter().print(out.toString());
+			}
 		}
 		catch (Exception e) 
 		{
+			response.setContentType("text/html");
+			response.getWriter().print("null");
 			e.printStackTrace();
-		}
-		response.getWriter().print("");		
+		}	
 	}
 
 	/**

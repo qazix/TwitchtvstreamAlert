@@ -19,6 +19,7 @@ public class streamDB extends HttpServlet {
 	// JDBC driver name and database URL
 	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
 	private static final String DB_URL = "jdbc:mysql://localhost/streamalert";
+//	private static final String DB_URL = "jdbc:mysql://ec2-54-236-111-22.compute-1.amazonaws.com:3306/streamalert";
 	
 	//  Database credentials
 	private static final String USER = "TSADBuser";//"TSAawayUser";
