@@ -86,7 +86,7 @@ function showAlert(name, imgUrl)
 {
 	document.getElementById("nameField").innerHTML = name + " is following you!";
 	document.getElementById("logo").setAttribute("src", imgUrl);
-	document.getElementsByTagName('footer').style = 'height: 64px;'
+	document.getElementsByTagName('footer')[0].style = 'height: 64px;'
 	setTimeout(function hideAlert() {
         document.getElementsByTagName('footer').style = 'height: 0;'
     }, 5000);
