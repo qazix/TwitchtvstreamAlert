@@ -24,6 +24,8 @@ public class streamDB extends HttpServlet {
 	//  Database credentials
 	private static final String USER = "TSADBuser";//"TSAawayUser";
 	private static final String PASS = "userTSADB";//"awayUserTSA";
+//	private static final String USER = "TSAawayUser";
+//	private static final String PASS = "awayUserTSA";
 		
 	private Connection conn;
        
@@ -128,13 +130,15 @@ public class streamDB extends HttpServlet {
 	    	Class.forName("com.mysql.jdbc.Driver");
 	    	conn = DriverManager.getConnection(DB_URL, USER, PASS);
 			Statement stmt = conn.createStatement();
-			String sql = "UPDATE user SET bgcolor = '" + request.getAttribute("BGColor") +
-						 "', chromacolor = '" + request.getAttribute("ChromaColor") + 
-						 "', fontcolor = '" + request.getAttribute("FontColor") +
-						 "', fontsize = " + request.getAttribute("FontSize") + 
-						 ", externalcss = '" + request.getAttribute("ExtCSS") + 
-						 "', userpicture = " + request.getAttribute("ShowPic") + 
-						 " WHERE twitchid = '" + request.getSession().getAttribute("name") + "'";
+			String sql = "UPDATE user SET bgcolor = '" + request.getParameter("background") +
+						 "', chromacolor = '" + request.getParameter("chroma") + 
+						 "', fontcolor = '" + request.getParameter("fontcolor") +
+						 "', fontsize = " + request.getParameter("fontsize") + 
+						 ", externalcss = '" + request.getParameter("externalcss") + 
+						 //"', userpicture = " + request.getAttribute("ShowPic") + 
+						 "' WHERE twitchid = '" + request.getSession().getAttribute("name") + "'";
+			
+			sql = sql.replaceAll("#", "");
 			
 			stmt.executeUpdate(sql);
 			conn.close();
@@ -143,7 +147,9 @@ public class streamDB extends HttpServlet {
 		{
 			e.printStackTrace();
 		}
-		
-		response.sendRedirect("/streamDB");
+		finally
+		{	
+			response.sendRedirect("/streamAlert/streamDB");
+		}
 	}
 }

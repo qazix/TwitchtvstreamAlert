@@ -74,9 +74,9 @@ public class callback extends HttpServlet {
 				mLastDate = Followers.getSDF().parse((String) follower.get("created_at")).getTime();
 				
 				request.getSession().setAttribute("name", mUser);
-				request.setAttribute("picURL", mPicURL);
-				request.setAttribute("numFollowers", mFollowers.size());
-				request.setAttribute("followers", mFollowers);
+				request.getSession().setAttribute("picURL", mPicURL);
+//				request.setAttribute("numFollowers", mFollowers.size());
+//				request.setAttribute("followers", mFollowers);
 				request.getSession().setAttribute("lastDate", mLastDate);
 				
 				response.getWriter().println(mFollowers);

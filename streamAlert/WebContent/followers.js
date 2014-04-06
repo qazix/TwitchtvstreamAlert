@@ -97,14 +97,14 @@ function updateDB()
 	var fontcolor = document.getElementById("fontcolor");
 	var fontsize = document.getElementById("fontsize");
 	
-	isGood = checkUrl(extCSS) && checkHex(chroma) && checkHex(bgColor) &&
-			 checkHex(fontcolor) && checkFontSize(fontsize);
+	var isGood = checkUrl(extCSS) && checkHex(chroma) && checkHex(bgColor) &&
+			 		checkHex(fontcolor) && checkFontSize(fontsize);
 	
 	if (isGood)
 	{
-		chroma.value = chroma.value.split("#")[1];
-		bgColor = bgColor.value.split('#')[1];
-		fontcolor = fontColor.value.split('#')[1];
+		chroma.value = chroma.value.substring(1);
+		bgColor.value = bgColor.value.substring(1);
+		fontcolor.value = fontColor.value.substring(1);
 		
 		return true;
 	}
