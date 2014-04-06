@@ -114,3 +114,9 @@ input[type="submit"]{
 	border-radius: 4px;
 	font-size: 18px;
 }
+input[type="color"]{
+	height: 18px;
+	width: 48px;
+	margin: 0;
+	padding: 0;
+}
