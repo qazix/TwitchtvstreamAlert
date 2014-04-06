@@ -88,7 +88,7 @@ function showAlert(name, imgUrl)
 	document.getElementById("logo").setAttribute("src", imgUrl);
 	document.getElementsByTagName('footer')[0].style = 'height: 64px;'
 	setTimeout(function hideAlert() {
-        document.getElementsByTagName('footer').style = 'height: 0;'
+        document.getElementsByTagName('footer')[0].style = 'height: 0;'
     }, 5000);
 }
 
