@@ -72,6 +72,7 @@ fieldset{
 	border: none;
 	margin: 0;
 	padding: 0;
+	text-align: right;
 }
 fieldset#style{
 	width: 450px;
@@ -82,7 +83,6 @@ fieldset#notif{
 	margin: 0 10px 0 0;
 	padding: 0;
 	width: 140px;
-	text-align: right;
 }
 footer p{
 	display: inline-block;
@@ -119,4 +119,7 @@ input[type="color"]{
 	width: 48px;
 	margin: 0;
 	padding: 0;
+}
+input[type="number"]{
+	width: 40px;
 }
