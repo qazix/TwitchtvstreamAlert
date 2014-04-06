@@ -130,8 +130,8 @@ public class Followers extends HttpServlet {
 				}
 				else
 				{
-//					break;
-					iRecentFollowers.add(iFollower);
+					break;
+//					iRecentFollowers.add(iFollower);
 				}
 			}
 		}

@@ -35,11 +35,11 @@
 			<h2>${name}</h2>
 			<form id="settings" method="POST" onsubmit="return updateDB()" action="/streamAlert/streamDB">
 				<fieldset id="style">
-					<input type="color" name="chroma" value="${ChromaColor}" onchange="checkHex(this)" />
-					<input type="color" name="background" value="${BGColor}" onchange="checkHex(this)"/>
-					<input type="color" name="fontcolor" value="${FontColor}" onchange="checkHex(this)"/>
-					<input type="number" name="fontsize" min="10" max="64" value="${FontSize}" onchange="checkFontSize(this)"/>
-					<input type="url" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)"/>
+					<input type="color" id="chroma" name="chroma" value="${ChromaColor}" onchange="checkHex(this)" />
+					<input type="color" id="background" name="background" value="${BGColor}" onchange="checkHex(this)"/>
+					<input type="color" id="fontcolor" name="fontcolor" value="${FontColor}" onchange="checkHex(this)"/>
+					<input type="number" id="fontsize" name="fontsize" min="10" max="64" value="${FontSize}" onchange="checkFontSize(this)"/>
+					<input type="url" id="externalcss" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)"/>
 				</fieldset>
 				<fieldset id="notif">
 					<label for="userpicture">Show User Picture</label>

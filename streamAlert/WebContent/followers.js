@@ -78,6 +78,7 @@ function checkHex(hexElem)
 		}
 			
 		hexElem.style.borderColor = '#FFFFFF';
+		hexElem.value = check;
 		return true;
 	}
 	else
@@ -89,10 +90,25 @@ function checkHex(hexElem)
 
 function updateDB()
 {
-	var extCSS = document.getElementById("extCSS").value;
-	isGood = checkUrl(extCSS);
+	var extCSS = document.getElementById("externalCSS");
+	var chroma = document.getElementById("chroma");
+	var bgColor = document.getElementById("background");
+	var fontcolor = document.getElementById("fontcolor");
+	var fontsize = document.getElementById("fontsize");
 	
-	return isGood;
+	isGood = checkUrl(extCSS) && checkHex(chroma) && checkHex(bgColor) &&
+			 checkHex(fontcolor) && checkFontSize(fontsize);
+	
+	if (isGood)
+	{
+		chroma.value = chroma.value.split("#")[1];
+		bgColor = bgColor.value.split('#')[1];
+		fontcolor = fontColor.value.split('#')[1];
+		
+		return true;
+	}
+	else
+		return false;
 }
 
 function showAlert(name, imgUrl)
@@ -113,8 +129,8 @@ function test()
 
 function fetch()
 {
-//	var xmlRequest = getXMLRequest(function(text){
-	var testRequest = getTestStuff(function(text){
+	var xmlRequest = getXMLRequest(function(text){
+//	var testRequest = getTestStuff(function(text){
 		JSONobj =  eval('('+text+')');
 		
 		setTimeout(fetch, 8000 * (JSONobj.length) + 15000);
@@ -126,6 +142,6 @@ function fetch()
 					   JSONobj[i].user.logo);
 		}
 	});
-//	xmlRequest.open("GET", "Followers", true);
-//	xmlRequest.send();
+	xmlRequest.open("GET", "Followers", true);
+	xmlRequest.send();
 }
