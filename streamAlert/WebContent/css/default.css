@@ -33,7 +33,7 @@ body{
 	padding: 0;
 }
 footer{
-	height: 64px;
+	height: 0;
 	font-size: 32px;
 	color: #000000;
 	background-color: #FFFFFF;
@@ -42,6 +42,9 @@ footer{
 	bottom: 0;
 	width: 95%;
 	left: 2.5%;
+	-webkit-transition: height 0.2s;
+	-moz-transition: height 0.2s;
+	-o-transition: height 0.2s;
 	transition: height 0.2s;
 	text-align: center;
 }
