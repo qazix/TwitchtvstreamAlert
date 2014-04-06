@@ -12,18 +12,23 @@
 		<link href='css/default.css' rel='stylesheet' type='text/css'>
 		<style> /* User Style Settings Created at page load from DB */
 			body{
-				background-color: #${ChromaColor}; }
+				background-color: #${ChromaColor};
+			}
 			footer{
 				background-color: #${BGColor}; 
 				font-size: ${FontSize}; 
-				color: #${FontColor}; }
+				color: #${FontColor};
+			}
+			header{
+				background-image: url(${picURL});
+			}
 		</style>
 		<link href='${ExtCSS}' rel='stylesheet' type='text/css'> 
 	</head>
 	<body onload="fetch()">
 		<header>
 			<h1>StreamAlert</h1>
-			<h2 style="background-image: '${picURL}'">${name}</h2>
+			<h2>${name}</h2>
 			<form id="settings">
 				<fieldset id="style">
 					<input type="color" name="chroma" value="${ChromaColor}" />
