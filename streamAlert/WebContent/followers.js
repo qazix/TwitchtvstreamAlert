@@ -26,16 +26,35 @@ function getTestStuff(func)
 	return 2;
 }
 
-function checkFontSize(size)
+function checkFontSize(sizeElem)
 {
-	return (size <= 64 && size >= 10);
+	var size = sizeElem.value;
+	if (size <= 64 && size >= 10)
+	{
+		sizeElem.style.borderColor = '#FFFFFF';
+		return true;
+	}
+	else
+	{
+		sizeElem.style.borderColor = '#FF0000';
+		return false;
+	}
 }
 
-function checkUrl(url)
+function checkUrl(urlElem)
 {
-	var urlregex = /^((https|http):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
-	var isGood = urlregex.test(url);
-	return isGood;
+	var check = urlElem.value;
+	var urlregex = /^(((https|http):\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$)?/;
+	if (urlregex.test(check))
+	{
+		urlElem.style.borderColor = '#FFFFFF';
+		return true;
+	}
+	else
+	{
+		urlElem.style.borderColor = '#FF0000';
+		return false;
+	}
 }
 
 function checkHex(hexElem)
@@ -44,9 +63,15 @@ function checkHex(hexElem)
 	var colorregex = /^[A-Fa-f0-5]{6}/;
 	var isGood = colorregex.test(check);
 	if(isGood)
+	{
+		hexElem.style.borderColor = '#FFFFFF';
 		return true;
+	}
 	else
+	{
+		hexElem.style.borderColor = '#FF0000';
 		return false;
+	}
 }
 
 function updateDB()

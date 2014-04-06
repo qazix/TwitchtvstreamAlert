@@ -29,13 +29,13 @@
 		<header>
 			<h1>StreamAlert</h1>
 			<h2>${name}</h2>
-			<form id="settings">
+			<form id="settings" method="POST" onsubmit="return updateDB()" action="/streamAlert/streamDB">
 				<fieldset id="style">
-					<input type="color" name="chroma" value="${ChromaColor}" />
-					<input type="color" name="background" value="${BGColor}" />
-					<input type="color" name="fontcolor" value="${FontColor}" />
-					<input type="number" name="fontsize" min="10" max="64" value="${FontSize}" />
-					<input type="url" name="externalcss" value="${ExtCSS}"/>
+					<input type="color" name="chroma" value="${ChromaColor}" onchange="checkHex(this)" />
+					<input type="color" name="background" value="${BGColor}" onchange="checkHex(this)"/>
+					<input type="color" name="fontcolor" value="${FontColor}" onchange="checkHex(this)"/>
+					<input type="number" name="fontsize" min="10" max="64" value="${FontSize}" onchange="checkFontSize(this)"/>
+					<input type="url" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)"/>
 				</fieldset>
 				<fieldset id="notif">
 					<label for="userpicture">Show User Picture</label>
