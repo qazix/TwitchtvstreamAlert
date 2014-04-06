@@ -62,6 +62,9 @@ form#settings{
 fieldset{
 	float: right;
 }
+fieldset#style{
+	border-color: #FFFFFF;
+}
 footer p{
 	display: inline-block;
 	height: 64px;
