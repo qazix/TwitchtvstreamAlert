@@ -121,21 +121,11 @@ function fetch()
 		
 		for(var i = 0; i < JSONobj.length; ++i)
 		{
-/*			setTimeout(showAlert(JSONobj[i].user.display_name,
-					   JSONobj[i].user.logo), 15000 * i);*/
-			
-			setTimeout((showAlert)(JSONobj[i].user.display_name,
-					   JSONobj[i].user.logo), 15000 * i);
-/*						{
-		        			return function() 
-		        			{ //rename shape to s in the new scope.
-		        				s.transitionTo(
-		        				{
-		        					alpha: opacity,
-		        					duration: speed
-		        				});
-		        			};
-						})(shape), 100);*/
+			setTimeout(function()
+					   {
+						  showAlert(JSONobj[i].user.display_name,
+								    JSONobj[i].user.logo);
+					   }, 15000 * i);
 		}
 	});
 //	xmlRequest.open("GET", "Followers", true);
