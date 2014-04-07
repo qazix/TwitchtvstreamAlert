@@ -127,6 +127,7 @@ function showAlert(name, imgUrl)
 	{
 		document.getElementById("logo").setAttribute("src", imgUrl);
 	}
+	document.getElementById("music").play();
 	document.getElementById("footer").style.height = "64px";
 	setTimeout(function hideAlert() {
         document.getElementById("footer").style.height = "0px";

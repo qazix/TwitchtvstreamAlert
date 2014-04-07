@@ -57,6 +57,7 @@
 		<footer id="footer">
 			<img id="logo" />
 			<p id="nameField"></p>
+			<audio id="music" src="alert.mp3"></audio>
 		</footer>
 	</body>
 </html>
