@@ -65,7 +65,7 @@ form#settings{
 	right: 0;
 	top: 0;
 	margin: 0 0 0 230px;
-	padding: 0;
+	padding: 0 4 0 0;
 }
 fieldset{
 	float: right;
@@ -79,11 +79,11 @@ fieldset#style{
 	margin: 0;
 	padding: 0;
 }
-fieldset#notif{
+/* fieldset#notif{
 	margin: 0 10px 0 0;
 	padding: 0;
 	width: 140px;
-}
+} */
 footer p{
 	display: inline-block;
 	height: 64px;
@@ -116,7 +116,7 @@ input[type="submit"]{
 }
 input[type="color"]{
 	height: 18px;
-	width: 48px;
+	width: 54px;
 	margin: 0;
 	padding: 0;
 }

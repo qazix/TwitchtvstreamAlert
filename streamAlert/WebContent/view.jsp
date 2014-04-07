@@ -46,10 +46,10 @@
 					<label for="externalcss">External CSS</label>
 					<input type="url" id="externalcss" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)" placeholder="Paste CSS URL" />
 					<input type="submit" value="Save Settings" />
-				</fieldset>
+				<!--</fieldset>
 				<fieldset id="notif">
 					<label for="userpicture">Show User Picture</label>
-					<input type="checkbox" name="userpicture" value="true" />
+					<!-- <input type="checkbox" name="userpicture" value="true" /> -->
 					<input type="button" value="Test Alert" onclick="test()" />
 				</fieldset>
 			</form>
