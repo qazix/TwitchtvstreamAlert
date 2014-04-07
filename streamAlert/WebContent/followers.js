@@ -33,7 +33,7 @@ function checkFontSize(sizeElem)
 	if (size <= 64 && size >= 10)
 	{
 		sizeElem.style.borderColor = '#FFFFFF';
-		document.getElementById("nameField").style.fontSize = size + "px";
+		document.getElementById("footer").style.fontSize = size + "px";
 		return true;
 	}
 	else

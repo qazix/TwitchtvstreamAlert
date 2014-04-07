@@ -20,7 +20,7 @@
 			}
 			footer{
 				background-color: #${BGColor}; 
-				font-size: ${FontSize}; 
+				font-size: ${FontSize}px; 
 				color: #${FontColor};
 			}
 			header h2{
