@@ -125,29 +125,32 @@ public class Followers extends HttpServlet {
 		Map<String, Object> iFollowerMap = getFollowers(pUser);
 		List<Object> iFollowers;
 		
-		iFollowers = (ArrayList<Object>) iFollowerMap.get("follows");
-		Map<String, Object> iFollower;
-		
-		if(pDate > 0)
+		if((int) iFollowerMap.get("_total") > 0)
 		{
-			for (int i = 0; i < iFollowers.size(); ++i)
+			iFollowers = (ArrayList<Object>) iFollowerMap.get("follows");
+			Map<String, Object> iFollower;
+		
+			if(pDate > 0)
 			{
-				iFollower = (Map<String, Object>) iFollowers.get(i);
-				if (sdf.parse((String) iFollower.get("created_at")).getTime() > pDate)
+				for (int i = 0; i < iFollowers.size(); ++i)
 				{
-					iRecentFollowers.add(iFollower);
-				}
-				else
-				{
-					break;
-//					iRecentFollowers.add(iFollower);
+					iFollower = (Map<String, Object>) iFollowers.get(i);
+					if (sdf.parse((String) iFollower.get("created_at")).getTime() > pDate)
+					{
+						iRecentFollowers.add(iFollower);
+					}
+					else
+					{
+						break;
+//						iRecentFollowers.add(iFollower);
+					}
 				}
 			}
-		}
-		else 
-		{
-//			System.out.println(iFollowers.get(0));
-			iRecentFollowers.add((Map<String, Object>) iFollowers.get(0));
+			else 
+			{
+//				System.out.println(iFollowers.get(0));
+				iRecentFollowers.add((Map<String, Object>) iFollowers.get(0));
+			}
 		}
 		
 		return iRecentFollowers;

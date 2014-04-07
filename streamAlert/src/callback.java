@@ -68,25 +68,29 @@ public class callback extends HttpServlet {
 				
 				//Grab that users followers
 				mFollowers = Followers.getRecentFollowers(mUser);				
-				
-				//Gets the last follower and the time he followed you
-				Map<String, Object> follower = (Map<String, Object>) mFollowers.get(0);
-				mLastDate = Followers.getSDF().parse((String) follower.get("created_at")).getTime();
+				if (!mFollowers.isEmpty())
+				{
+					//Gets the last follower and the time he followed you
+					Map<String, Object> follower = (Map<String, Object>) mFollowers.get(0);
+					mLastDate = Followers.getSDF().parse((String) follower.get("created_at")).getTime();
+				}
+				else
+					mLastDate = 0;
 				
 				request.getSession().setAttribute("name", mUser);
 				request.getSession().setAttribute("picURL", mPicURL);
-//				request.setAttribute("numFollowers", mFollowers.size());
-//				request.setAttribute("followers", mFollowers);
 				request.getSession().setAttribute("lastDate", mLastDate);
 				
 				response.getWriter().println(mFollowers);
-				
-				request.getRequestDispatcher("/streamDB").forward(request, response);
 			} 
 			catch (Exception e) 
 			{
 				e.printStackTrace();
-			}			
+			}
+			finally
+			{
+				request.getRequestDispatcher("/streamDB").forward(request, response);
+			}
 		}
 	}
 

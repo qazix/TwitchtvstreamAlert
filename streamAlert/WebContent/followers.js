@@ -117,9 +117,13 @@ function updateDB()
 function showAlert(name, imgUrl)
 {
 	document.getElementById("nameField").innerHTML = name + " has followed you!";
-	if(imgUrl==""){
-		document.getElementById("logo").setAttribute("src", "http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_150x150.png");
-	}else{
+	if(imgUrl == "")
+	{
+		document.getElementById("logo").setAttribute("src",
+				"http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_150x150.png");
+	}
+	else
+	{
 		document.getElementById("logo").setAttribute("src", imgUrl);
 	}
 	document.getElementById("footer").style.height = "64px";
