@@ -83,7 +83,7 @@
 				Twitch.tv StreamAlert is a free app created specifically for unpartnered streamers on Twitch.tv. The app allows you to track your followers in realtime, and overlay notifications and sounds right on your stream, to foster audience participation and boost your viewers!
 			</p>
 			<p class="description">
-				Test the app using the following credentials (username / passowrd): streamalerttest / teststreamalert
+				Test the app using the following credentials or you own (username / password): streamalerttest / teststreamalert
 			</p>
 			<ul class="features">
 				<li>Track followers and subscribers in real time.</li>
