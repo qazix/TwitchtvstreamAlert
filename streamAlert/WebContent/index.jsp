@@ -78,6 +78,7 @@
 			<button onClick="parent.location='/streamAlert/signIn'">Try it!</button>
 		</header>
 		<main>
+			<iframe width="1000" height="750" src="//www.youtube.com/embed/zYr_PDr-OSg?rel=0" frameborder="0" allowfullscreen></iframe>
 			<p class="description">
 				Twitch.tv StreamAlert is a free app created specifically for unpartnered streamers on Twitch.tv. The app allows you to track your followers in realtime, and overlay notifications and sounds right on your stream, to foster audience participation and boost your viewers!
 			</p>
