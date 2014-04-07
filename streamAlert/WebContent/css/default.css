@@ -40,7 +40,6 @@ body{
 }
 footer{
 	height: 0;
-	font-size: 32px;
 	color: #000000;
 	background-color: #FFFFFF;
 	overflow: hidden;
@@ -75,9 +74,9 @@ fieldset{
 	text-align: right;
 }
 fieldset#style{
-	width: 600px;
-	margin: 0;
+	margin: 6px 6px 0 0;
 	padding: 0;
+	min-width: 500px;
 }
 /* fieldset#notif{
 	margin: 0 10px 0 0;
@@ -89,7 +88,8 @@ footer p{
 	height: 64px;
 	margin: 0;
 	padding: 0;
-	vertical-align: middle;
+	line-height: 64px;
+	vertical-align: top;
 }
 input{
 	font-family: Georgia, Times, "Times New Roman", serif;
