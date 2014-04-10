@@ -106,7 +106,7 @@ function updateDB()
 	{
 		chroma.value = chroma.value.substring(1);
 		bgColor.value = bgColor.value.substring(1);
-		fontcolor.value = fontColor.value.substring(1);
+		fontcolor.value = fontcolor.value.substring(1);
 		
 		return true;
 	}

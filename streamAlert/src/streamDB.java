@@ -138,7 +138,7 @@ public class streamDB extends HttpServlet {
 						 "', fontcolor = '" + request.getParameter("fontcolor") +
 						 "', fontsize = " + request.getParameter("fontsize") + 
 						 ", externalcss = '" + request.getParameter("externalcss") + 
-						 ", soundfile = '" + request.getParameter("soundfile") + 
+						 "', soundfile = '" + request.getParameter("soundfile") + 
 						 //"', userpicture = " + request.getAttribute("ShowPic") + 
 						 "' WHERE twitchid = '" + request.getSession().getAttribute("name") + "'";
 			
