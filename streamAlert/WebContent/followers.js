@@ -145,7 +145,7 @@ function load()
 	var soundfile = document.getElementById("soundfile").value;
 	if (soundfile != null && soundfile != "")
 	{
-		document.getElementById("music").setAttribute(src, soundfile);
+		document.getElementById("music").setAttribute("src", soundfile);
 	}
 	fetch();
 }
