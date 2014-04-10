@@ -104,9 +104,9 @@ function updateDB()
 	
 	if (isGood)
 	{
-		chroma.value = chroma.value.substring(1);
-		bgColor.value = bgColor.value.substring(1);
-		fontcolor.value = fontcolor.value.substring(1);
+		//chroma.value = chroma.value.substring(1);
+		//bgColor.value = bgColor.value.substring(1);
+		//fontcolor.value = fontcolor.value.substring(1);
 		
 		return true;
 	}
