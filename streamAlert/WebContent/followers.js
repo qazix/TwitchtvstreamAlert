@@ -97,9 +97,10 @@ function updateDB()
 	var bgColor = document.getElementById("background");
 	var fontcolor = document.getElementById("fontcolor");
 	var fontsize = document.getElementById("fontsize");
-	
+	var soundfile = document.getElementById("soundfile");
+
 	var isGood = checkUrl(extCSS) && checkHex(chroma) && checkHex(bgColor) &&
-			 		checkHex(fontcolor) && checkFontSize(fontsize);
+			 		checkHex(fontcolor) && checkFontSize(fontsize) && checkUrl(soundfile);
 	
 	alert(isGood);
 	
@@ -108,6 +109,7 @@ function updateDB()
 		chroma.value = chroma.value.substring(1);
 		bgColor.value = bgColor.value.substring(1);
 		fontcolor.value = fontColor.value.substring(1);
+		document.getElementById("music").src = soundfile.value;
 		
 		return true;
 	}

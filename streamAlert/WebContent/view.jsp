@@ -45,6 +45,8 @@
 					<input type="number" id="fontsize" name="fontsize" min="10" max="64" value="${FontSize}" onchange="checkFontSize(this)" />
 					<label for="externalcss">External CSS</label>
 					<input type="url" id="externalcss" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)" placeholder="Paste CSS URL" />
+					<label for="soundfile">Alert Sound</label>
+					<input type="url" id="soundfile" name="soundfile" value="" onchange="checkUrl(this)" placeholder="Paste MP3 URL" />
 					<input type="submit" value="Save Settings" />
 				<!--</fieldset>
 				<fieldset id="notif">
