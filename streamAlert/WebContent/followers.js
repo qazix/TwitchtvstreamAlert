@@ -92,7 +92,7 @@ function checkHex(hexElem)
 
 function updateDB()
 {
-	var extCSS = document.getElementById("externalCSS");
+	var extCSS = document.getElementById("externalcss");
 	var chroma = document.getElementById("chroma");
 	var bgColor = document.getElementById("background");
 	var fontcolor = document.getElementById("fontcolor");
@@ -101,8 +101,6 @@ function updateDB()
 
 	var isGood = checkUrl(extCSS) && checkHex(chroma) && checkHex(bgColor) &&
 			 		checkHex(fontcolor) && checkFontSize(fontsize) && checkUrl(soundfile);
-	
-	alert(isGood);
 	
 	if (isGood)
 	{
