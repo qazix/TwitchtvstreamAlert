@@ -109,7 +109,6 @@ function updateDB()
 		chroma.value = chroma.value.substring(1);
 		bgColor.value = bgColor.value.substring(1);
 		fontcolor.value = fontColor.value.substring(1);
-		document.getElementById("music").src = soundfile.value;
 		
 		return true;
 	}
@@ -139,6 +138,16 @@ function showAlert(name, imgUrl)
 function test()
 {
 	showAlert("Test_Alert", "http://www.iiacanadanationalconference.com/wp-content/uploads/2013/01/test.jpg");
+}
+
+function load()
+{
+	var soundfile = document.getElementById("soundfile").value;
+	if (soundfile != null && soundfile != "")
+	{
+		document.getElementById("music").setAttribute(src, soundfile);
+	}
+	fetch();
 }
 
 function fetch()

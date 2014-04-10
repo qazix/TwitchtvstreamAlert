@@ -29,7 +29,7 @@
 		</style>
 		<link href='${ExtCSS}' rel='stylesheet' type='text/css'> 
 	</head>
-	<body id="body" onload="fetch()">
+	<body id="body" onload="load()">
 		<header>
 			<h1>StreamAlert</h1>
 			<h2>${name}</h2>
@@ -46,7 +46,7 @@
 					<label for="externalcss">External CSS</label>
 					<input type="url" id="externalcss" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)" placeholder="Paste CSS URL" />
 					<label for="soundfile">Alert Sound</label>
-					<input type="url" id="soundfile" name="soundfile" value="" onchange="checkUrl(this)" placeholder="Paste MP3 URL" />
+					<input type="url" id="soundfile" name="soundfile" value="${soundFile}" onchange="checkUrl(this)" placeholder="Paste MP3 URL" />
 					<input type="submit" value="Save Settings" />
 				<!--</fieldset>
 				<fieldset id="notif">

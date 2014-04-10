@@ -49,6 +49,7 @@ public class streamDB extends HttpServlet {
 		int FontSize = 32;
 		String ExtCSS = "";
 		boolean ShowPic = true;
+		String soundFile = "";
 		
 		try
 		{
@@ -82,6 +83,7 @@ public class streamDB extends HttpServlet {
 			FontSize = rs.getInt("fontsize");
 			ExtCSS = rs.getString("externalcss");
 			ShowPic = rs.getInt("userpicture") > 0;
+			soundFile = rs.getString("soundfile");
 			
 			stmt.close();
 			conn.close();
@@ -117,6 +119,7 @@ public class streamDB extends HttpServlet {
 		request.setAttribute("FontSize", FontSize);
 		request.setAttribute("ExtCSS", ExtCSS);
 		request.setAttribute("ShowPic", ShowPic);
+		request.setAttribute("soundFile", soundFile);
 		
 		request.getRequestDispatcher("/view.jsp").forward(request, response);
 	}
@@ -135,6 +138,7 @@ public class streamDB extends HttpServlet {
 						 "', fontcolor = '" + request.getParameter("fontcolor") +
 						 "', fontsize = " + request.getParameter("fontsize") + 
 						 ", externalcss = '" + request.getParameter("externalcss") + 
+						 ", soundfile = '" + request.getParameter("soundfile") + 
 						 //"', userpicture = " + request.getAttribute("ShowPic") + 
 						 "' WHERE twitchid = '" + request.getSession().getAttribute("name") + "'";
 			
