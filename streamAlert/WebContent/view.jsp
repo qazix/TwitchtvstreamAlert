@@ -47,6 +47,8 @@
 					<input type="url" id="externalcss" name="externalcss" value="${ExtCSS}" onchange="checkUrl(this)" placeholder="Paste CSS URL" />
 					<label for="soundfile">Alert Sound</label>
 					<input type="url" id="soundfile" name="soundfile" value="${soundFile}" onchange="checkUrl(this)" placeholder="Paste MP3 URL" />
+					<label for="volume">Volume</label>
+					<input type="range" id="volume" name="volume" min="0" max="100" onmouseup="updateVolume()">
 					<input type="submit" value="Save Settings" />
 				<!--</fieldset>
 				<fieldset id="notif">

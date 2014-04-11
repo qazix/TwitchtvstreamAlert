@@ -170,3 +170,7 @@ function fetch()
 	xmlRequest.open("GET", "Followers", true);
 	xmlRequest.send();
 }
+
+function updateVolume(){
+	document.getElementById("music").volume = document.getElementById("volume").value * .01;
+}
