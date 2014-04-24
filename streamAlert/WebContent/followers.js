@@ -117,7 +117,7 @@ function updateDB()
 function showAlert(name, imgUrl)
 {
 	document.getElementById("nameField").innerHTML = name + " has followed you!";
-	if(imgUrl == "")
+	if(imgUrl == "" || imgUrl == null)
 	{
 		document.getElementById("logo").setAttribute("src",
 				"http://static-cdn.jtvnw.net/jtv_user_pictures/xarth/404_user_150x150.png");
@@ -135,7 +135,7 @@ function showAlert(name, imgUrl)
 
 function test()
 {
-	showAlert("Test_Alert", "http://www.iiacanadanationalconference.com/wp-content/uploads/2013/01/test.jpg");
+	showAlert("Ash Ketchum", "ash.jpg");
 }
 
 function load()
